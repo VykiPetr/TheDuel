@@ -90,6 +90,7 @@ Task definition in order of priority
   - Make GameLogic.js do logic of going back to prep screen when someone lands a hit
   - Make GameLogic.js do logic of player health going down to 0
   - Make GameLogic.js do logic of winning
+  - figure out how to make sounds in this
   
 
 ## Links
