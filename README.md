@@ -73,22 +73,23 @@ Definition of the different states and their transition (transition functions)
 
 ## Task
 Task definition in order of priority
-  -Make HTML
-  -In Html make a basic menu screen
-  -In Html add a start button
-  -
-  -Make Canvas.js draw prep screen
-  -in prep screen menu for Health, win amount, knight name
-  -in prep screen have the ability to choose a pos with buttons
-  -Make Canvas.js draw action screen animations
-  -Draw a win screen
-  -Draw a lose screen
-  -Make GameLogic.js do checking for positions
-  -Make GameLogic.js do logic of when a riposte happens
-  -Make GameLogic.js count how many riposte and decrease the choosing time by this
-  -Make GameLogic.js do logic of going back to prep screen when someone lands a hit
-  -Make GameLogic.js do logic of player health going down to 0
-  -Make GameLogic.js do logic of winning
+
+  - Make HTML
+  - In Html make a basic menu screen
+  - In Html add a start button
+  - 
+  - Make Canvas.js draw prep screen
+  - in prep screen menu for Health, win amount, knight name
+  - in prep screen have the ability to choose a pos with buttons
+  - Make Canvas.js draw action screen animations
+  - Draw a win screen
+  - Draw a lose screen
+  - Make GameLogic.js do checking for positions
+  - Make GameLogic.js do logic of when a riposte happens
+  - Make GameLogic.js count how many riposte and decrease the choosing time by this
+  - Make GameLogic.js do logic of going back to prep screen when someone lands a hit
+  - Make GameLogic.js do logic of player health going down to 0
+  - Make GameLogic.js do logic of winning
   
 
 ## Links
