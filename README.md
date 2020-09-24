@@ -97,13 +97,13 @@ Task definition in order of priority
 
 
 ### Trello
-[https://trello.com/b/u6nTRyDS/theduelproject](https://trello.com)
+https://trello.com/b/u6nTRyDS/theduelproject (https://trello.com)
 
 
 ### Git
 URls for the project repo and deploy
-[https://github.com/VykiPetr/TheDuel](http://github.com)
-[https://github.com/VykiPetr/TheDuel.git](http://github.com)
+ - [https://github.com/VykiPetr/TheDuel](http://github.com)
+ - [https://github.com/VykiPetr/TheDuel.git](http://github.com)
 
 
 ### Slides
