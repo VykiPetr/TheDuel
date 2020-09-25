@@ -1,0 +1,14 @@
+body {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url('/TheDuel/images/splashScreen.png'); */
+}
+.btn.btn-primary {
+    position: absolute;
+}
+
+.hidden {
+    display: none;
+}
