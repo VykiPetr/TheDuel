@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <embed src="/sounds/SplashSound.wav" autostart="true" width="0" height="0" id="sound1" enablejavascript="true">
+    <!-- <embed src="/sounds/SplashSound.wav" autostart="false" width="0" height="0" id="sound1" enablejavascript="true"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Duel Game</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <button type="button" class="btn btn-primary">Start</button>
-    <canvas width="899" height="500">
-    </canvas>
-    
+    <div id='buttonCont'>
+        <button type="button" class="btn btn-info clearInterval">clearInterval</button>
+        <div class="btn-group hidden" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary top">Top</button>
+            <button type="button" class="btn btn-secondary mid">Middle</button>
+            <button type="button" class="btn btn-secondary low">Low</button>
+          </div>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Ser</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" value="Knight"> 
+        </div>
+        <button type="button" class="btn btn-primary">Start</button>
+    </div>
+    <div id='container'>
+        <canvas width="899" height="500">
+        </canvas>
+    </div>
+    <script src="index.js"></script>
     <script src="canvas.js"></script>
-    <script src="/TheDuel/index.js"></script>
 </body>
+
 </html>

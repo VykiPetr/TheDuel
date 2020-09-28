@@ -5,10 +5,48 @@ body {
     align-items: center;
     /* background-image: url('/TheDuel/images/splashScreen.png'); */
 }
+.btn.btn-info {
+    position: fixed;
+    left: 0;
+    top: 0;
+}
 .btn.btn-primary {
-    position: absolute;
+    color: black;
+    background-image: url('/images/parchementBg.jpg');
+    border-color: black;
 }
 
+
+#buttonCont {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 899px;
+    height: 500px;
+}
+#container {
+    width: 899px;
+    height: 500px;
+}
+.input-group.input-group-sm.mb-3 {
+    margin: 0;
+    width: 200px;
+    }
+.btn-group{
+    display: flex;
+    flex-direction: column;
+    margin: 100px 440px 0 0;
+}
+.btn.btn-secondary {
+    color: black;
+    background-image: url('/images/parchementBg.jpg');
+}
+.form-control {
+    margin: 0;
+    width: 200px;
+}
 .hidden {
     display: none;
 }
