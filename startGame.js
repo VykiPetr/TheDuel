@@ -1,58 +1,111 @@
 const actionCounter = () => {
-    if (opponentStance = playerStance) {
+    if (opponentStance === playerStance) {
         riposteScreen()
-    } else if (opponentStance = 0 && (playerStance = 1)) {
+    } else if (opponentStance === 0 && (playerStance === 1)) {
+
         opponentImg.src = '/images/OpponentBot.png'
         playerHlth -= 1
         currentScene = 1
-    } else if (opponentStance = 1 && (playerStance = 2)) {
+        return
+    } else if (opponentStance === 1 && (playerStance === 2)) {
         opponentImg.src = '/images/OpponentMid.png'
         playerHlth -= 2
         currentScene = 1
-    } else if (opponentStance = 2 && (playerStance = 0)) {
+        return
+    } else if (opponentStance === 2 && (playerStance === 0)) {
         opponentImg.src = '/images/OpponentTop.png'
         playerHlth -= 3
         currentScene = 1
-    } else if (playerStance = 0 && (opponentStance = 1)) {
+        return
+    } else if (playerStance === 0 && (opponentStance === 1)) {
         opponentImg.src = '/images/OpponentMid.png'
         opponentHlth -= 1
         currentScene = 1
-    } else if (playerStance = 1 && (opponentStance = 2)) {
+        return
+    } else if (playerStance === 1 && (opponentStance === 2)) {
         opponentImg.src = '/images/OpponentTop.png'
         opponentHlth -= 2
         currentScene = 1
-    } else if (playerStance = 2 && (opponentStance = 0)) {
+        return
+    } else if (playerStance === 2 && (opponentStance === 0)) {
         opponentImg.src = '/images/OpponentBot.png'
         opponentHlth -= 3
         currentScene = 1
+        return
     }
     console.log('action called')
+    ctx.drawImage(action, 0, 0)
     drawStatusBox()
-}
-const riposteScreen = () => {
+    playerStance = 0
 
 }
+const riposteScreen = () => {
+    
+}
 const randomOppPos = () => {
-    let rng = Math.floor(Math.random() * 4)
+    let rng = Math.floor(Math.random() * 3)
     opponentStance = rng
 }
 const randomName = () => {
     let rng = Math.floor(Math.random() * opponentNameArr.length)
-    return opponentNameArr[rng]
+    opponentName = opponentNameArr[rng]
 }
 const loseAnim = () => {
+    duelBtn.classList.add('hidden')
+    posBtns.classList.add('hidden')
+    let intervalId = 0
+    let intervalId2 = 0
     playerY = 200
-    ctx.drawImage(loseBg, 0, 0)
-    ctx.drawImage(playerImg, playerX, playerY)
     playerImg.src = '/images/PlayerWalk1.png'
-    if (playerImg.src === '/images/PlayerWalk1.png') {
-        playerImg.src = '/images/PlayerWalk2.png'
-    } else if (playerImg.src === '/images/PlayerWalk3.png') {
-        playerImg.src = '/images/PlayerWalk1.png'
-    } else {
-        playerImg.src = '/images/PlayerWalk3.png'
-    }
-    playerX += 5
+    intervalId = setInterval(() => {
+        ctx.drawImage(loseBg, 0, 0)
+        ctx.font = '34px Verdana'
+        ctx.fillText(`After ${winAmnt} wins`, 70, 85)
+        ctx.fillText(`You have been struck down by ${opponentName}!`, 70, 120)
+        // ctx.drawImage(playerImg, playerX, playerY)
+        // if (playerImg.src === '/images/PlayerWalk1.png') {
+        //     playerImg.src = '/images/PlayerWalk2.png'
+        // } else if (playerImg.src === '/images/PlayerWalk3.png') {
+        //     playerImg.src = '/images/PlayerWalk1.png'
+        // } else {
+        //     playerImg.src = '/images/PlayerWalk3.png'
+        // }
+        // switch (playerImg.src) {
+        //     case '/images/PlayerWalk1.png':
+        //         playerImg.src = '/images/PlayerWalk2.png'
+        //         break;
+        //     case '/images/PlayerWalk3.png':
+        //         playerImg.src = '/images/PlayerWalk1.png'
+        //         break;
+        //     default:
+        //         playerImg.src = '/images/PlayerWalk3.png'
+        //         break;
+        // }
+        switch (animCount) {
+            case 1:
+                playerImg.src = '/images/PlayerWalk2.png'
+                ctx.drawImage(playerImg, playerX, playerY)
+                break;
+            case 2:
+                playerImg.src = '/images/PlayerWalk3.png'
+                ctx.drawImage(playerImg, playerX, playerY)
+                break;
+            default:
+                playerImg.src = '/images/PlayerWalk1.png'
+                ctx.drawImage(playerImg, playerX, playerY)
+                animCount = 0
+                break;
+        }
+        console.log(playerImg.src)
+        playerX += 5
+        animCount++
+    }, 500)
+    intervalId2 = setTimeout(() => {
+        resetBtn.classList.remove('hidden')
+        resetBtn.addEventListener('click', () => {
+            location.reload();
+        })
+    }, 4000)
 }
 const clearCanvas = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -83,18 +136,20 @@ const drawStatusBox = () => {
     ctx.closePath()
 }
 const actionImg = () => {
+    // clearCanvas()
     ctx.drawImage(action, 0, 0)
     drawStatusBox()
-    ctx.drawImage(playerImg, 50, 300)
     ctx.drawImage(opponentImg, canvas.width - 150, 300)
+    ctx.drawImage(playerImg, 50, 280)
     topBtn.addEventListener('click', () => {
         playerImg.src = '/images/PlayerTop.png'
         playerStance = 2
-        playerImg.addEventListener('load', () => {})
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
         ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        ctx.drawImage(playerImg, 50, 260)
+        // playerImg.addEventListener('load', () => {
+        //     ctx.drawImage(playerImg, 50, 280)
+        // })
     })
     midBtn.addEventListener('click', () => {
         playerImg.src = '/images/PlayerMid.png'
@@ -102,7 +157,9 @@ const actionImg = () => {
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
         ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        ctx.drawImage(playerImg, 50, 280)
+        playerImg.addEventListener('load', () => {
+            ctx.drawImage(playerImg, 50, 300)
+        })
     })
     lowBtn.addEventListener('click', () => {
         playerImg.src = '/images/PlayerBot.png'
@@ -110,46 +167,72 @@ const actionImg = () => {
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
         ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        ctx.drawImage(playerImg, 50, 280)
+        playerImg.addEventListener('load', () => {
+            ctx.drawImage(playerImg, 50, 300)
+        })
+    })
+    duelBtn.addEventListener('click', () => {
+        console.log('duelclick')
+        randomOppPos()
+        console.log('opp stance', opponentStance)
+        console.log('player stance', playerStance)
+        actionCounter()
+        ctx.drawImage(action, 0, 0)
+        drawStatusBox()
+        playerImg.src = '/images/PlayerIdle.png'
+        ctx.drawImage(playerImg, 50, 300)
+        opponentImg.src = '/images/OpponentIdle.png'
+        ctx.drawImage(opponentImg, canvas.width - 150, 300)
+        if (playerHlth <= 0) {
+            loseAnim()
+        }
     })
 }
+inputName.addEventListener('change', (event) => {
+    console.log('event change')
+    enteredName = event.target.value
+    console.log(event.target.value)
+    console.log(enteredName)
+})
 const startGame = () => {
-    inputName.addEventListener('change', (event) => {
-        console.log('event change')
-        inputName.value = event.target.value
-        enteredName = event.target.value
-    })
+    // playerName = `Ser ${enteredName}`
+    // console.log('on start', enteredName)
+    // inputName.addEventListener('change', (event) => {
+    //     console.log('event change')
+    //     enteredName = inputName.value
+    // // })
     startBtn.addEventListener('click', () => {
         startBtn.classList.add('hidden')
         nameBox.classList.add('hidden')
         posBtns.classList.remove('hidden')
         duelBtn.classList.remove('hidden')
         currentScene = 1
-        opponentName = randomName()
+        randomName()
+        playerName = `Ser ${enteredName}`
+        console.log('on start', enteredName)
+        actionImg()
     })
-    duelBtn.addEventListener('click', () => {
-        console.log('duelclick')
-        randomOppPos()
-        console.log(opponentStance)
-        actionCounter()
-    })
-    switch (currentScene) {
-        case 0:
-            splashImg()
-            break;
-        case 1:
-            actionImg()
-            break;
-        case 3:
-            actionCounter()
-            break;
-        case 4:
-            riposteScreen()
-            break;
-        case 5:
-            loseAnim()
-            break;
-
-    }
+    // switch (currentScene) {
+    //     case 0:
+    //         splashImg()
+    //         break;
+    //     case 1:
+    //         actionImg()
+    //         break;
+    //     case 3:
+    //         actionCounter()
+    //         break;
+    //     case 4:
+    //         riposteScreen()
+    //         break;
+    //     case 5:
+    //         loseAnim()
+    //         break;
+    // }
 }
+// startBtn.addEventListener('click', () => {
+//     startBtn.classList.add('hidden')
+//     actionImg()
+// })
+splashImg()
 startGame()

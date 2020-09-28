@@ -21,7 +21,9 @@ let playerX = 0
 let playerY = 0
 let playerStance = 0
 let playerHlth = 10
-let playerName = `Ser ${enteredName}`
+let playerName = ''
+let winAmnt = 0
+let animCount = 0
 // opponent
 let opponentNameArr = ['Yeoman Yve', 'Sir Pers', 'Lord Joseph', 'Squire Fulk', 'Knight Eudon', 'Sir Barnaby', 'Sir Laselot', 'Squire Villiam']
 let opponentImg = new Image()

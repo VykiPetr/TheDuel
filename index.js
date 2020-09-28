@@ -7,12 +7,10 @@ let lowBtn = document.querySelector('.low')
 let duelBtn = document.querySelector('.duel')
 let inputName = document.querySelector('.form-control')
 let clearIntervale = document.querySelector('.clearInterval')
-var enteredName = inputName.value
+let resetBtn = document.querySelector('.reset')
+var enteredName = ''
 let currentScene = 0
-startBtn.addEventListener('click', () => {
-    startBtn.classList.add('hidden')
-    actionImg()
-})
+
 
 
 // document.addEventListener('load', () => {
