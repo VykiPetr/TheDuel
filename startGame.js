@@ -3,75 +3,59 @@ const actionCounter = () => {
     if (opponentStance === playerStance) {
         playerHlth -= 1
         opponentHlth -= 1
-        hitSound.play()
+        riposteSound.play()
         playerStance = 0
-        actionImg()
-        posBtns.classList.remove('hidden')
-        duelBtn.classList.remove('hidden')
-        return
+        drawStatusBox()
     } else if (opponentStance === 0 && (playerStance === 1)) {
         opponentImg.src = '/images/OpponentBot.png'
         playerHlth -= 1
         currentScene = 1
         hitSound.play()
         playerStance = 0
-        actionImg()
-        posBtns.classList.remove('hidden')
-        duelBtn.classList.remove('hidden')
-        return
+        drawStatusBox()
     } else if (opponentStance === 1 && (playerStance === 2)) {
         opponentImg.src = '/images/OpponentMid.png'
         playerHlth -= 2
         currentScene = 1
         hitSound.play()
         playerStance = 0
-        actionImg()
-        posBtns.classList.remove('hidden')
-        duelBtn.classList.remove('hidden')
-        return
+        drawStatusBox()
     } else if (opponentStance === 2 && (playerStance === 0)) {
         opponentImg.src = '/images/OpponentTop.png'
         playerHlth -= 3
         currentScene = 1
         hitSound.play()
         playerStance = 0
-        actionImg()
-        posBtns.classList.remove('hidden')
-        duelBtn.classList.remove('hidden')
-        return
+        drawStatusBox()
     } else if (playerStance === 0 && (opponentStance === 1)) {
         opponentImg.src = '/images/OpponentMid.png'
         opponentHlth -= 1
         currentScene = 1
         hitSound.play()
         playerStance = 0
-        actionImg()
-        posBtns.classList.remove('hidden')
-        duelBtn.classList.remove('hidden')
-        return
+        drawStatusBox()
     } else if (playerStance === 1 && (opponentStance === 2)) {
         opponentImg.src = '/images/OpponentTop.png'
         opponentHlth -= 2
         currentScene = 1
         hitSound.play()
-        playerStance = 0
-        actionImg()
-        posBtns.classList.remove('hidden')
-        duelBtn.classList.remove('hidden')
-        return
+        drawStatusBox()
     } else if (playerStance === 2 && (opponentStance === 0)) {
         opponentImg.src = '/images/OpponentBot.png'
         opponentHlth -= 3
         currentScene = 1
         hitSound.play()
-        playerStance = 0
-        actionImg()
-        posBtns.classList.remove('hidden')
-        duelBtn.classList.remove('hidden')
-        return
+        drawStatusBox()
     }
     console.log('action called')
     // }, 3500)
+    setTimeout(() => {
+        drawStatusBox()
+        playerStance = 0
+        posBtns.classList.remove('hidden')
+        duelBtn.classList.remove('hidden')
+        actionImg()
+    }, 2000)
 }
 const riposteScreen = () => {
     posBtns.classList.add('hidden')
@@ -91,28 +75,28 @@ const duelAnim = () => {
     let PlayerX = 50
     setIntervalId = setInterval(() => {
         ctx.drawImage(action, 0, 0)
+        drawStatusBox()
         ctx.drawImage(playerImg, PlayerX, 300)
         ctx.drawImage(opponentImg, oppX, 300)
         oppX -= 10
         PlayerX += 10
     }, 100);
     setTimeout(() => {
+        findOppPos()
+        findPlayerPos()
         clearInterval(setIntervalId)
     }, 3000)
     setTimeout(() => {
-        findOppPos()
-        findPlayerPos()
+        drawStatusBox()
         ctx.drawImage(action, 0, 0)
-        ctx.drawImage(playerImg, 330, 300)
-        ctx.drawImage(opponentImg, 670, 300)
+        ctx.drawImage(playerImg, 350, 300)
+        ctx.drawImage(opponentImg, 470, 300)
     }, 3300)
     setTimeout(() => {
         clearInterval(setIntervalId)
+        drawStatusBox()
         actionCounter()
     }, 3800)
-    // if (setIntervalId >= 4500) {
-    //     clearInterval(setIntervalId)
-    // }
 }
 const randomOppPos = () => {
     let rng = Math.floor(Math.random() * 3)
@@ -156,7 +140,6 @@ const loseAnim = () => {
     duelBtn.classList.add('hidden')
     posBtns.classList.add('hidden')
     let intervalId = 0
-    let intervalId2 = 0
     playerY = 200
     playerImg.src = '/images/PlayerWalk1.png'
     intervalId = setInterval(() => {
@@ -183,13 +166,32 @@ const loseAnim = () => {
         playerX += 5
         animCount++
     }, 500)
-    intervalId2 = setTimeout(() => {
+    setTimeout(() => {
         resetBtn.classList.remove('hidden')
         resetBtn.addEventListener('click', () => {
+            clearInterval(intervalId)
+            windAmnt = 0
             location.reload();
         })
     }, 4000)
 
+}
+const winAnim = () => {
+    duelBtn.classList.add('hidden')
+    posBtns.classList.add('hidden')
+    contBut.classList.remove('hidden')
+    ctx.drawImage(splash, 0, 0)
+    ctx.font = '34px Verdana'
+    ctx.fillText(`You have bested ${opponentName}!`, 70, 85)
+    ctx.fillText(`So far you have won ${winAmnt} duels!`, 70, 115)
+    contBut.addEventListener('click', () => {
+        duelBtn.classList.remove('hidden')
+        posBtns.classList.remove('hidden')
+        contBut.classList.add('hidden')
+        randomName()
+        opponentHlth = 5 + (winAmnt + 1)
+        actionImg()
+    })
 }
 const clearCanvas = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -208,7 +210,8 @@ const drawStatusBox = () => {
     ctx.fillStyle = 'black'
     ctx.font = '20px Verdana'
     ctx.fillText(playerName, 45, 220)
-    ctx.fillText(`Health: ${playerHlth}`, 45, 250)
+    ctx.fillText(`Health: ${playerHlth}`, 45, 245)
+    ctx.fillText(`Wins: ${winAmnt}`, 45, 270)
     ctx.closePath()
     ctx.beginPath()
     ctx.fillStyle = '#8f792c'
@@ -226,7 +229,8 @@ const actionImg = () => {
         return
     }
     if (opponentHlth <= 0) {
-        loseAnim()
+        winAmnt += 1
+        winAnim()
         return
     }
     resetPos()
@@ -239,10 +243,8 @@ const actionImg = () => {
         playerStance = 2
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
+        ctx.drawImage(playerImg, 50, 250)
         ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        // playerImg.addEventListener('load', () => {
-        //     ctx.drawImage(playerImg, 50, 280)
-        // })
     })
     midBtn.addEventListener('click', () => {
         playerImg.src = '/images/PlayerMid.png'
@@ -271,16 +273,13 @@ const actionImg = () => {
         randomOppPos()
         console.log('opp stance', opponentStance)
         console.log('player stance', playerStance)
-
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
-        playerImg.src = '/images/PlayerIdle.png'
+        resetPos()
         ctx.drawImage(playerImg, 50, 300)
-        opponentImg.src = '/images/OpponentIdle.png'
         ctx.drawImage(opponentImg, canvas.width - 150, 300)
         duelAnim()
         // actionCounter()
-
     })
 }
 inputName.addEventListener('change', (event) => {
@@ -290,12 +289,6 @@ inputName.addEventListener('change', (event) => {
     console.log(enteredName)
 })
 const startGame = () => {
-    // playerName = `Ser ${enteredName}`
-    // console.log('on start', enteredName)
-    // inputName.addEventListener('change', (event) => {
-    //     console.log('event change')
-    //     enteredName = inputName.value
-    // // })
     // splashSound.play()
     startBtn.addEventListener('click', () => {
         startBtn.classList.add('hidden')
@@ -308,23 +301,6 @@ const startGame = () => {
         console.log('on start', enteredName)
         actionImg()
     })
-    // switch (currentScene) {
-    //     case 0:
-    //         splashImg()
-    //         break;
-    //     case 1:
-    //         actionImg()
-    //         break;
-    //     case 3:
-    //         actionCounter()
-    //         break;
-    //     case 4:
-    //         riposteScreen()
-    //         break;
-    //     case 5:
-    //         loseAnim()
-    //         break;
-    // }
 }
 splashImg()
 startGame()
