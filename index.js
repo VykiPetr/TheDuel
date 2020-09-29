@@ -5,11 +5,12 @@ let topBtn = document.querySelector('.top')
 let midBtn = document.querySelector('.mid')
 let lowBtn = document.querySelector('.low')
 let duelBtn = document.querySelector('.duel')
+let riposteBtn = document.querySelector('.riposteBtn')
 let inputName = document.querySelector('.form-control')
 let clearIntervale = document.querySelector('.clearInterval')
 let resetBtn = document.querySelector('.reset')
 var enteredName = ''
-let currentScene = 0
+
 
 
 
