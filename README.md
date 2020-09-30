@@ -1,5 +1,5 @@
 # The Duel
-https://vykipetr.github.io/TheDuel/
+
 ## Description
 The player must win a tournament in which consists of a certain amount of fast paced duels (duel amount might vary due to game difficulty which is yet unknown). The player must defeat knights in back to back duels by choosing a position of their sword from these, TOP, MIDDLE, BOTTOM. If both of the knigths have the same position a riposte happens where the player must choose a new position quickly, and everytime a riposte happens from a riposte the time you have to choose a new position decreases. 
 
