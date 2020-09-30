@@ -23,7 +23,7 @@ const actionCounter = () => {
         playerHitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText('The opponent parried you overhead!', 360, 220)
+        ctx.fillText('The opponent parried you overhead!', 310, 220)
         ctx.fillText('You received 2 damage!', 310, 240)
     } else if (opponentStance === 2 && (playerStance === 0)) {
         playerHlth -= 3
@@ -31,7 +31,7 @@ const actionCounter = () => {
         playerHitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText('You did not manage to parry the overhead!', 360, 220)
+        ctx.fillText('You did not manage to parry the overhead!', 310, 220)
         ctx.fillText('You received 3 damage!', 310, 240)
     } else if (playerStance === 0 && (opponentStance === 1)) {
         opponentHlth -= 1
@@ -217,7 +217,7 @@ const splashImg = () => {
 const fightRsltBox = () => {
     ctx.beginPath()
     ctx.fillStyle = '#8f792c'
-    ctx.fillRect(300, 200, 250, 50)
+    ctx.fillRect(300, 200, 280, 50)
     ctx.fillStyle = 'black'
     ctx.font = '20px Verdana'
     ctx.closePath()
@@ -275,7 +275,7 @@ inputName.addEventListener('change', (event) => {
     console.log(enteredName)
 })
 const startGame = () => {
-    // splashSound.play()
+    splashSound.play()
     startBtn.addEventListener('click', () => {
         startBtn.classList.add('hidden')
         nameBox.classList.add('hidden')
