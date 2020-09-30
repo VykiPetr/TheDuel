@@ -10,7 +10,7 @@ splash.src = './images/splashScreen.png'
 // actionScreen
 let action = new Image()
 action.src = './images/Action.png'
-action.addEventListener('load', () => {})
+// action.addEventListener('load', () => {})
 // loseScreen
 let loseBg = new Image()
 loseBg.src = './images/loseBckgrnd.png'

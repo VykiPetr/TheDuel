@@ -106,7 +106,7 @@ const findOppPos = () => {
             opponentImg.src = './images/OpponentMid.png'
             break;
         case 2:
-            opponentImg.src = './images/OpponentMid.png'
+            opponentImg.src = './images/OpponentTop.png'
             break;
     }
 }
@@ -214,17 +214,6 @@ const drawStatusBox = () => {
     ctx.closePath()
 }
 const actionImg = () => {
-    // clearCanvas()
-    const topBtnFunction = () =>{
-        playerImg.src = './images/PlayerTop.png'
-        console.log('topbtn')
-        playerStance = 2
-        ctx.drawImage(action, 0, 0)
-        drawStatusBox()
-        ctx.drawImage(playerImg, 50, 250)
-        ctx.drawImage(opponentImg, canvas.width - 150, 300)
-
-    }
     duelBtn.removeEventListener('click',()=>{})
     midBtn.removeEventListener('click',()=>{})
     topBtn.removeEventListener('click',topBtnFunction)
@@ -243,38 +232,9 @@ const actionImg = () => {
     ctx.drawImage(opponentImg, canvas.width - 150, 300)
     ctx.drawImage(playerImg, 50, 280)
     topBtn.addEventListener('click', topBtnFunction)
-    midBtn.addEventListener('click', () => {
-        playerImg.src = './images/PlayerMid.png'
-        playerStance = 1
-        ctx.drawImage(action, 0, 0)
-        drawStatusBox()
-        ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        ctx.drawImage(playerImg, 50, 300)
-    })
-    lowBtn.addEventListener('click', () => {
-        playerImg.src = './images/PlayerBot.png'
-        playerStance = 0
-        ctx.drawImage(action, 0, 0)
-        drawStatusBox()
-        ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        ctx.drawImage(playerImg, 50, 300)
-
-    })
-    duelBtn.addEventListener('click', () => {
-        posBtns.classList.add('hidden')
-        duelBtn.classList.add('hidden')
-        console.log('duelclick')
-        randomOppPos()
-        console.log('opp stance', opponentStance)
-        console.log('player stance', playerStance)
-        ctx.drawImage(action, 0, 0)
-        drawStatusBox()
-        resetPos()
-        ctx.drawImage(playerImg, 50, 300)
-        ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        duelAnim()
-        // actionCounter()
-    })
+    midBtn.addEventListener('click', midBtnFunction)
+    lowBtn.addEventListener('click', lowBtnFunction)
+    duelBtn.addEventListener('click', duelBtnFunction)
 }
 inputName.addEventListener('change', (event) => {
     console.log('event change')
@@ -296,6 +256,49 @@ const startGame = () => {
         actionImg()
     })
 }
-const funct = () =>{}
 splashImg()
 startGame()
+
+
+
+
+
+const lowBtnFunction = () => {
+    playerImg.src = './images/PlayerBot.png'
+    playerStance = 0
+    ctx.drawImage(action, 0, 0)
+    drawStatusBox()
+    ctx.drawImage(opponentImg, canvas.width - 150, 300)
+    ctx.drawImage(playerImg, 50, 300)
+}
+const midBtnFunction = () => {
+    playerImg.src = './images/PlayerMid.png'
+    playerStance = 1
+    ctx.drawImage(action, 0, 0)
+    drawStatusBox()
+    ctx.drawImage(opponentImg, canvas.width - 150, 300)
+    ctx.drawImage(playerImg, 50, 300)
+}
+const topBtnFunction = () =>{
+    playerImg.src = './images/PlayerTop.png'
+    console.log('topbtn')
+    playerStance = 2
+    ctx.drawImage(action, 0, 0)
+    drawStatusBox()
+    ctx.drawImage(playerImg, 50, 250)
+    ctx.drawImage(opponentImg, canvas.width - 150, 300)
+}
+const duelBtnFunction = () => {
+    posBtns.classList.add('hidden')
+    duelBtn.classList.add('hidden')
+    console.log('duelclick')
+    randomOppPos()
+    console.log('opp stance', opponentStance)
+    console.log('player stance', playerStance)
+    ctx.drawImage(action, 0, 0)
+    drawStatusBox()
+    resetPos()
+    ctx.drawImage(playerImg, 50, 300)
+    ctx.drawImage(opponentImg, canvas.width - 150, 300)
+    duelAnim()
+}
