@@ -145,7 +145,6 @@ const loseAnim = () => {
     posBtns.classList.add('hidden')
     let intervalId = 0
     playerY = 200
-    playerImg.src = './images/PlayerWalk1.png'
     intervalId = setInterval(() => {
         ctx.drawImage(loseBg, 0, 0)
         ctx.font = '34px Verdana'
