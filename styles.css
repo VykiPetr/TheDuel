@@ -12,7 +12,7 @@ body {
 }
 .btn.btn-primary {
     color: black;
-    background-image: url('/images/parchementBg.jpg');
+    background-image: url('./images/parchementBg.jpg');
     border-color: black;
 }
 
@@ -41,7 +41,7 @@ body {
 }
 .btn.btn-secondary {
     color: black;
-    background-image: url('/images/parchementBg.jpg');
+    background-image: url('./images/parchementBg.jpg');
 }
 .form-control {
     margin: 0;

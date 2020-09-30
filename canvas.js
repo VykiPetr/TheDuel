@@ -6,17 +6,17 @@ let currentScene = 0
 let riposteCount = 0
 // splashScreen
 let splash = new Image()
-splash.src = '/images/splashScreen.png'
+splash.src = './images/splashScreen.png'
 // actionScreen
 let action = new Image()
-action.src = '/images/Action.png'
+action.src = './images/Action.png'
 action.addEventListener('load', () => {})
 // loseScreen
 let loseBg = new Image()
-loseBg.src = '/images/loseBckgrnd.png'
+loseBg.src = './images/loseBckgrnd.png'
 // player
 let playerImg = new Image()
-playerImg.src = '/images/PlayerIdle.png'
+playerImg.src = './images/PlayerIdle.png'
 // playerImg.addEventListener('load', () => {})
 let playerX = 0
 let playerY = 0
@@ -28,7 +28,7 @@ let animCount = 0
 // opponent
 let opponentNameArr = ['Yeoman Yve', 'Sir Pers', 'Lord Joseph', 'Squire Fulk', 'Knight Eudon', 'Sir Barnaby', 'Sir Laselot', 'Squire Villiam']
 let opponentImg = new Image()
-opponentImg.src = '/images/OpponentIdle.png'
+opponentImg.src = './images/OpponentIdle.png'
 opponentImg.addEventListener('load', () => {})
 let opponentX = 0
 let opponentY = 0
@@ -52,6 +52,6 @@ class sound {
         };
     }
 }
-let riposteSound = new sound('/sounds/swordhits/Ripostesound.mp3')
-let hitSound = new sound('/sounds/swordhits/Playerhitsound.mp3')
-let splashSound = new sound('/sounds/SplashSound.wav') 
+let riposteSound = new sound('./sounds/swordhits/Ripostesound.mp3')
+let hitSound = new sound('./sounds/swordhits/Playerhitsound.mp3')
+let splashSound = new sound('./sounds/SplashSound.wav') 

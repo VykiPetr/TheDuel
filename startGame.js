@@ -1,47 +1,37 @@
 const actionCounter = () => {
+    drawStatusBox()
     // setTimeout(() => {
     if (opponentStance === playerStance) {
         playerHlth -= 1
         opponentHlth -= 1
         riposteSound.play()
-        playerStance = 0
         drawStatusBox()
     } else if (opponentStance === 0 && (playerStance === 1)) {
-        opponentImg.src = '/images/OpponentBot.png'
         playerHlth -= 1
         currentScene = 1
         hitSound.play()
-        playerStance = 0
         drawStatusBox()
     } else if (opponentStance === 1 && (playerStance === 2)) {
-        opponentImg.src = '/images/OpponentMid.png'
         playerHlth -= 2
         currentScene = 1
         hitSound.play()
-        playerStance = 0
         drawStatusBox()
     } else if (opponentStance === 2 && (playerStance === 0)) {
-        opponentImg.src = '/images/OpponentTop.png'
         playerHlth -= 3
         currentScene = 1
         hitSound.play()
-        playerStance = 0
         drawStatusBox()
     } else if (playerStance === 0 && (opponentStance === 1)) {
-        opponentImg.src = '/images/OpponentMid.png'
         opponentHlth -= 1
         currentScene = 1
         hitSound.play()
-        playerStance = 0
         drawStatusBox()
     } else if (playerStance === 1 && (opponentStance === 2)) {
-        opponentImg.src = '/images/OpponentTop.png'
         opponentHlth -= 2
         currentScene = 1
         hitSound.play()
         drawStatusBox()
     } else if (playerStance === 2 && (opponentStance === 0)) {
-        opponentImg.src = '/images/OpponentBot.png'
         opponentHlth -= 3
         currentScene = 1
         hitSound.play()
@@ -51,7 +41,7 @@ const actionCounter = () => {
     // }, 3500)
     setTimeout(() => {
         drawStatusBox()
-        playerStance = 0
+        resetPos()
         posBtns.classList.remove('hidden')
         duelBtn.classList.remove('hidden')
         actionImg()
@@ -82,13 +72,14 @@ const duelAnim = () => {
         PlayerX += 10
     }, 100);
     setTimeout(() => {
+        drawStatusBox()
         findOppPos()
         findPlayerPos()
         clearInterval(setIntervalId)
     }, 3000)
     setTimeout(() => {
-        drawStatusBox()
         ctx.drawImage(action, 0, 0)
+        drawStatusBox()
         ctx.drawImage(playerImg, 350, 300)
         ctx.drawImage(opponentImg, 470, 300)
     }, 3000)
@@ -103,32 +94,32 @@ const randomOppPos = () => {
     opponentStance = rng
 }
 const resetPos = () => {
-    opponentImg.src = '/images/OpponentIdle.png'
-    playerImg.src = '/images/PlayerIdle.png'
+    opponentImg.src = './images/OpponentIdle.png'
+    playerImg.src = './images/PlayerIdle.png'
 }
 const findOppPos = () => {
     switch (opponentStance) {
         case 0:
-            opponentImg.src = '/images/OpponentBot.png'
+            opponentImg.src = './images/OpponentBot.png'
             break;
         case 1:
-            opponentImg.src = '/images/OpponentMid.png'
+            opponentImg.src = './images/OpponentMid.png'
             break;
         case 2:
-            opponentImg.src = '/images/OpponentMid.png'
+            opponentImg.src = './images/OpponentMid.png'
             break;
     }
 }
 const findPlayerPos = () => {
     switch (playerStance) {
         case 0:
-            playerImg.src = '/images/PlayerBot.png'
+            playerImg.src = './images/PlayerBot.png'
             break;
         case 1:
-            playerImg.src = '/images/PlayerMid.png'
+            playerImg.src = './images/PlayerMid.png'
             break;
         case 2:
-            playerImg.src = '/images/PlayerTop.png'
+            playerImg.src = './images/PlayerTop.png'
             break;
     }
 }
@@ -141,7 +132,7 @@ const loseAnim = () => {
     posBtns.classList.add('hidden')
     let intervalId = 0
     playerY = 200
-    playerImg.src = '/images/PlayerWalk1.png'
+    playerImg.src = './images/PlayerWalk1.png'
     intervalId = setInterval(() => {
         ctx.drawImage(loseBg, 0, 0)
         ctx.font = '34px Verdana'
@@ -149,15 +140,15 @@ const loseAnim = () => {
         ctx.fillText(`You have been struck down by ${opponentName}!`, 70, 120)
         switch (animCount) {
             case 1:
-                playerImg.src = '/images/PlayerWalk2.png'
+                playerImg.src = './images/PlayerWalk2.png'
                 ctx.drawImage(playerImg, playerX, playerY)
                 break;
             case 2:
-                playerImg.src = '/images/PlayerWalk3.png'
+                playerImg.src = './images/PlayerWalk3.png'
                 ctx.drawImage(playerImg, playerX, playerY)
                 break;
             default:
-                playerImg.src = '/images/PlayerWalk1.png'
+                playerImg.src = './images/PlayerWalk1.png'
                 ctx.drawImage(playerImg, playerX, playerY)
                 animCount = 0
                 break;
@@ -224,9 +215,19 @@ const drawStatusBox = () => {
 }
 const actionImg = () => {
     // clearCanvas()
+    const topBtnFunction = () =>{
+        playerImg.src = './images/PlayerTop.png'
+        console.log('topbtn')
+        playerStance = 2
+        ctx.drawImage(action, 0, 0)
+        drawStatusBox()
+        ctx.drawImage(playerImg, 50, 250)
+        ctx.drawImage(opponentImg, canvas.width - 150, 300)
+
+    }
     duelBtn.removeEventListener('click',()=>{})
     midBtn.removeEventListener('click',()=>{})
-    topBtn.removeEventListener('click',()=>{})
+    topBtn.removeEventListener('click',topBtnFunction)
     lowBtn.removeEventListener('click',()=>{})
     if (playerHlth <= 0) {
         loseAnim()
@@ -237,21 +238,13 @@ const actionImg = () => {
         winAnim()
         return
     }
-    resetPos()
     ctx.drawImage(action, 0, 0)
     drawStatusBox()
     ctx.drawImage(opponentImg, canvas.width - 150, 300)
     ctx.drawImage(playerImg, 50, 280)
-    topBtn.addEventListener('click', () => {
-        playerImg.src = '/images/PlayerTop.png'
-        playerStance = 2
-        ctx.drawImage(action, 0, 0)
-        drawStatusBox()
-        ctx.drawImage(playerImg, 50, 250)
-        ctx.drawImage(opponentImg, canvas.width - 150, 300)
-    })
+    topBtn.addEventListener('click', topBtnFunction)
     midBtn.addEventListener('click', () => {
-        playerImg.src = '/images/PlayerMid.png'
+        playerImg.src = './images/PlayerMid.png'
         playerStance = 1
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
@@ -259,7 +252,7 @@ const actionImg = () => {
         ctx.drawImage(playerImg, 50, 300)
     })
     lowBtn.addEventListener('click', () => {
-        playerImg.src = '/images/PlayerBot.png'
+        playerImg.src = './images/PlayerBot.png'
         playerStance = 0
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
@@ -303,5 +296,6 @@ const startGame = () => {
         actionImg()
     })
 }
+const funct = () =>{}
 splashImg()
 startGame()
