@@ -91,7 +91,7 @@ const duelAnim = () => {
         ctx.drawImage(action, 0, 0)
         ctx.drawImage(playerImg, 350, 300)
         ctx.drawImage(opponentImg, 470, 300)
-    }, 3300)
+    }, 3000)
     setTimeout(() => {
         clearInterval(setIntervalId)
         drawStatusBox()
@@ -224,6 +224,10 @@ const drawStatusBox = () => {
 }
 const actionImg = () => {
     // clearCanvas()
+    duelBtn.removeEventListener('click',()=>{})
+    midBtn.removeEventListener('click',()=>{})
+    topBtn.removeEventListener('click',()=>{})
+    lowBtn.removeEventListener('click',()=>{})
     if (playerHlth <= 0) {
         loseAnim()
         return
@@ -252,9 +256,7 @@ const actionImg = () => {
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
         ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        playerImg.addEventListener('load', () => {
-            ctx.drawImage(playerImg, 50, 300)
-        })
+        ctx.drawImage(playerImg, 50, 300)
     })
     lowBtn.addEventListener('click', () => {
         playerImg.src = '/images/PlayerBot.png'
@@ -262,9 +264,8 @@ const actionImg = () => {
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
         ctx.drawImage(opponentImg, canvas.width - 150, 300)
-        playerImg.addEventListener('load', () => {
-            ctx.drawImage(playerImg, 50, 300)
-        })
+        ctx.drawImage(playerImg, 50, 300)
+
     })
     duelBtn.addEventListener('click', () => {
         posBtns.classList.add('hidden')
@@ -289,7 +290,7 @@ inputName.addEventListener('change', (event) => {
     console.log(enteredName)
 })
 const startGame = () => {
-    // splashSound.play()
+    splashSound.play()
     startBtn.addEventListener('click', () => {
         startBtn.classList.add('hidden')
         nameBox.classList.add('hidden')

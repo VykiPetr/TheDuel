@@ -17,7 +17,7 @@ loseBg.src = '/images/loseBckgrnd.png'
 // player
 let playerImg = new Image()
 playerImg.src = '/images/PlayerIdle.png'
-playerImg.addEventListener('load', () => {})
+// playerImg.addEventListener('load', () => {})
 let playerX = 0
 let playerY = 0
 let playerStance = 0
