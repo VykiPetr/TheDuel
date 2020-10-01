@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Duel Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
@@ -13,31 +14,42 @@
 
 <body>
     <div id='buttonCont'>
-        <button type="button" class="btn btn-danger continue hidden">Continue</button>
+        <button type="button" class="btn btn-danger continue hidden">Continueth</button>
         <button type="button" class="btn btn-danger reset hidden">Restart</button>
         <div class="btn-group hidden" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary top">Top</button>
             <button type="button" class="btn btn-secondary mid">Middle</button>
-            <button type="button" class="btn btn-secondary low">Low</button>
+            <button type="button" class="btn btn-secondary low">Base</button>
           </div>
           <div class="btn-group riposteBtn hidden" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary top">Top</button>
             <button type="button" class="btn btn-secondary mid">Middle</button>
-            <button type="button" class="btn btn-secondary low">Low</button>
+            <button type="button" class="btn btn-secondary low">Base</button>
           </div>
-          <button type="button" class="btn btn-warning duel hidden">Duel!</button>
+          <button type="button" class="btn btn-warning duel hidden">Engarde!</button>
         <div class="input-group input-group-sm mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Ser</span>
+                <span class="input-group-text" id="inputGroup-sizing-sm">S'r</span>
             </div>
             <input type="text" class="form-control" aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-sm" value="Knight"> 
         </div>
-        <button type="button" class="btn btn-primary">Start</button>
+        <button type="button" class="btn btn-primary">Starteth</button>
     </div>
     <div id='container'>
         <canvas width="899" height="500">
         </canvas>
+    </div>
+    <div id='instructions'>
+        <h2>Welcometh!</h2>
+        <p>You must win 3 duels</p>
+        <p>in order to win the tournament!</p>
+        <h3>Game rules</h3>
+        <p>You must choose from 3 positons</p>
+        <p>If your position matches the opponent's</p>
+        <p>You must choose a new one again!</p>
+        <p>But be careful as time to choose will decrease!</p>
+        <p>Best of luck Sir Knight!</p>
     </div>
     <script src="index.js"></script>
     <script src="canvas.js"></script>
