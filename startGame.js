@@ -17,7 +17,7 @@ const actionCounter = () => {
         hitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText('The opponent parries!', 310, 220)
+        ctx.fillText('The opponent deflects!', 310, 220)
         ctx.fillText('Thee hath taken 1 damageth!', 310, 240)
     } else if (opponentStance === 1 && (playerStance === 2)) {
         playerHlth -= 2
@@ -25,7 +25,7 @@ const actionCounter = () => {
         playerHitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText('The opponent parries!', 310, 220)
+        ctx.fillText('The opponent deflects!', 310, 220)
         ctx.fillText('Thee hath taken 2 damageth!', 310, 240)
     } else if (opponentStance === 2 && (playerStance === 0)) {
         playerHlth -= 3
@@ -33,7 +33,7 @@ const actionCounter = () => {
         playerHitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText('You did not manage to parry!', 310, 220)
+        ctx.fillText('You did not manage to deflect!', 310, 220)
         ctx.fillText('Thee hath taken 3 damageth!', 310, 240)
     } else if (playerStance === 0 && (opponentStance === 1)) {
         opponentHlth -= 1
@@ -41,7 +41,7 @@ const actionCounter = () => {
         hitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText(`Thee parry the opponent!`, 310, 220)
+        ctx.fillText(`Thee deflect the opponent!`, 310, 220)
         ctx.fillText('Thee dealeth 1 damageth!', 310, 240)
     } else if (playerStance === 1 && (opponentStance === 2)) {
         opponentHlth -= 2
@@ -49,7 +49,7 @@ const actionCounter = () => {
         crowdCheer.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText(`Thee parry the opponent!`, 310, 220)
+        ctx.fillText(`Thee deflect the opponent!`, 310, 220)
         ctx.fillText('Thee dealeth 2 damageth!', 310, 240)
     } else if (playerStance === 2 && (opponentStance === 0)) {
         opponentHlth -= 3
@@ -57,7 +57,7 @@ const actionCounter = () => {
         crowdCheer.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText(`Thee striketh past the defence!`, 310, 220)
+        ctx.fillText(`Thee striketh past the d'fence!`, 310, 220)
         ctx.fillText('Thee dealeth 3 damageth!', 310, 240)
     }
     console.log('action called')
