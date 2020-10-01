@@ -81,8 +81,8 @@ const riposteScreen = () => {
 
     ctx.drawImage(action, 0, 0)
     drawStatusBox()
-    ctx.drawImage(findPlayerPos(), 350, 300)
-    ctx.drawImage(findOppPos(), 450, 300)
+    ctx.drawImage(findPlayerPos(), 330, 300)
+    ctx.drawImage(findOppPos(), 430, 300)
     posBtns.classList.remove('hidden')
     riposteCount++
     ctx.beginPath()
@@ -100,8 +100,8 @@ const riposteScreen = () => {
             ctx.drawImage(action, 0, 0)
             fightRsltBox()
             drawStatusBox()
-            ctx.drawImage(findPlayerPos(), 350, 300)
-            ctx.drawImage(findOppPos(), 450, 300)
+            ctx.drawImage(findPlayerPos(), 330, 300)
+            ctx.drawImage(findOppPos(), 430, 300)
             playerHlth -= 1
             ctx.fillText('Same position!', 310, 220)
             ctx.fillText('Thee taketh damageth', 310, 240)
@@ -139,8 +139,8 @@ const duelAnim = () => {
     setTimeout(() => {
         ctx.drawImage(action, 0, 0)
         drawStatusBox()
-        ctx.drawImage(findPlayerPos(), 350, 300)
-        ctx.drawImage(findOppPos(), 450, 300)
+        ctx.drawImage(findPlayerPos(), 330, 300)
+        ctx.drawImage(findOppPos(), 430, 300)
     }, 3000)
     setTimeout(() => {
         clearInterval(setIntervalId)
@@ -314,7 +314,6 @@ inputName.addEventListener('change', (event) => {
     console.log(enteredName)
 })
 const startGame = () => {
-    splashSound.play()
     startBtn.addEventListener('click', () => {
         startBtn.classList.add('hidden')
         nameBox.classList.add('hidden')
@@ -326,6 +325,7 @@ const startGame = () => {
         playerName = `S'r ${enteredName}`
         console.log('on start', enteredName)
         actionImg()
+        splashSound.play()
     })
     instructionBtn.addEventListener('click', () => {
         buttonContainerMain.classList.add('hidden')
