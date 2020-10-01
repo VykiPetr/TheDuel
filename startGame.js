@@ -2,20 +2,22 @@ const actionCounter = () => {
     drawStatusBox()
     // setTimeout(() => {
     if (opponentStance === playerStance) {
-        playerHlth -= 1
-        opponentHlth -= 1
+        // playerHlth -= 1
+        // opponentHlth -= 1
         riposteSound.play()
         drawStatusBox()
-        fightRsltBox()
+        // fightRsltBox()
         ctx.fillText('Same position!', 310, 220)
-        ctx.fillText('Both received 1 damage!', 310, 240)
+        // ctx.fillText('Both received 1 damage!', 310, 240)
+        riposteScreen()
+        return
     } else if (opponentStance === 0 && (playerStance === 1)) {
         playerHlth -= 1
         playerHitSound.play()
         hitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText('The opponent parried you blow!', 310, 220)
+        ctx.fillText('The opponent parries!', 310, 220)
         ctx.fillText('You received 1 damage!', 310, 240)
     } else if (opponentStance === 1 && (playerStance === 2)) {
         playerHlth -= 2
@@ -23,7 +25,7 @@ const actionCounter = () => {
         playerHitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText('The opponent parried you overhead!', 310, 220)
+        ctx.fillText('The opponent parries!', 310, 220)
         ctx.fillText('You received 2 damage!', 310, 240)
     } else if (opponentStance === 2 && (playerStance === 0)) {
         playerHlth -= 3
@@ -31,7 +33,7 @@ const actionCounter = () => {
         playerHitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText('You did not manage to parry the overhead!', 310, 220)
+        ctx.fillText('You did not manage to parry!', 310, 220)
         ctx.fillText('You received 3 damage!', 310, 240)
     } else if (playerStance === 0 && (opponentStance === 1)) {
         opponentHlth -= 1
@@ -39,7 +41,7 @@ const actionCounter = () => {
         hitSound.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText(`You parry the opponent's blow!`, 310, 220)
+        ctx.fillText(`You parry the opponent!`, 310, 220)
         ctx.fillText('You deal 1 damage!', 310, 240)
     } else if (playerStance === 1 && (opponentStance === 2)) {
         opponentHlth -= 2
@@ -47,7 +49,7 @@ const actionCounter = () => {
         crowdCheer.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText(`You parry the opponent's overhead!`, 310, 220)
+        ctx.fillText(`You parry the opponent!`, 310, 220)
         ctx.fillText('You deal 2 damage!', 310, 240)
     } else if (playerStance === 2 && (opponentStance === 0)) {
         opponentHlth -= 3
@@ -55,7 +57,7 @@ const actionCounter = () => {
         crowdCheer.play()
         drawStatusBox()
         fightRsltBox()
-        ctx.fillText(`You manage to go past the defence!`, 310, 220)
+        ctx.fillText(`You strike past the defence!`, 310, 220)
         ctx.fillText('You deal 3 damage!', 310, 240)
     }
     console.log('action called')
@@ -69,16 +71,31 @@ const actionCounter = () => {
     }, 2000)
 }
 const riposteScreen = () => {
-    posBtns.classList.add('hidden')
-    riposteBtn.classList.remove('hidden')
+    midBtn.removeEventListener('click', midBtnFunction)
+    topBtn.removeEventListener('click', topBtnFunction)
+    lowBtn.removeEventListener('click', lowBtnFunction)
+
+    midBtn.addEventListener('click', riposteMidBtn)
+    topBtn.addEventListener('click', riposteTopBtn)
+    lowBtn.addEventListener('click', riposteBotBtn)
+
+    ctx.drawImage(action, 0, 0)
+    drawStatusBox()
+    ctx.drawImage(findPlayerPos(), 350, 300)
+    ctx.drawImage(findOppPos(), 450, 300)
+    posBtns.classList.remove('hidden')
     riposteCount++
     console.log('riposte')
-    ctx.drawImage(action, 0, 0)
-    ctx.fillStyle = '#756e75'
+    ctx.fillStyle = 'black'
     ctx.font = '34px Verdana'
     ctx.fillText('Riposte!', 400, 200)
-    ctx.fillText(`You have ${(2000-riposteCount*100)}  to decide!`, 320, 240)
-    setTimeout(() => {}, 2000 - (riposteCount * 100))
+    ctx.fillText(`You have ${(2000-riposteCount*100)}s to decide!`, 320, 240)
+    setTimeout(() => {
+        actionCounter()
+        midBtn.removeEventListener('click', riposteMidBtn)
+        topBtn.removeEventListener('click', riposteTopBtn)
+        lowBtn.removeEventListener('click', riposteBotBtn)
+    }, 2000 - (riposteCount * 100))
 }
 const duelAnim = () => {
     let setIntervalId = 0
@@ -162,7 +179,7 @@ const loseAnim = () => {
                 animCount = 0
                 break;
         }
-        playerX += 5
+        playerX += 10
         animCount++
     }, 500)
     setTimeout(() => {
@@ -241,10 +258,10 @@ const drawStatusBox = () => {
     ctx.closePath()
 }
 const actionImg = () => {
-    duelBtn.removeEventListener('click', () => {})
-    midBtn.removeEventListener('click', () => {})
+    duelBtn.removeEventListener('click', duelBtnFunction)
+    midBtn.removeEventListener('click', midBtnFunction)
     topBtn.removeEventListener('click', topBtnFunction)
-    lowBtn.removeEventListener('click', () => {})
+    lowBtn.removeEventListener('click', lowBtnFunction)
     if (playerHlth <= 0) {
         loseAnim()
         return
@@ -350,4 +367,27 @@ const duelBtnFunction = () => {
     ctx.drawImage(playerIdleImg, 50, 300)
     ctx.drawImage(opponentIdle, canvas.width - 200, 300)
     duelAnim()
+}
+
+const riposteTopBtn = () => {
+    console.log('topbtn')
+    playerStance = 2
+    ctx.drawImage(action, 0, 0)
+    drawStatusBox()
+    ctx.drawImage(playerTopImg, 350, 300)
+    ctx.drawImage(findOppPos(), 450, 300)
+}
+const riposteMidBtn = () => {
+    playerStance = 1
+    ctx.drawImage(action, 0, 0)
+    drawStatusBox()
+    ctx.drawImage(findOppPos(), 450, 300)
+    ctx.drawImage(playerMidImg, 350, 300)
+}
+const riposteBotBtn = () => {
+    playerStance = 0
+    ctx.drawImage(action, 0, 0)
+    drawStatusBox()
+    ctx.drawImage(findOppPos(), 450, 300)
+    ctx.drawImage(playerBotImg, 350, 300)
 }
