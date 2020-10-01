@@ -51,7 +51,7 @@ opponentBot.src = './images/OpponentBot.png'
 let opponentX = 0
 let opponentY = 0
 let opponentStance = 0
-let opponentHlth = 6
+let opponentHlth = 3
 let opponentName = ''
 // Sounds
 class sound {

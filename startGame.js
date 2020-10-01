@@ -85,11 +85,15 @@ const riposteScreen = () => {
     ctx.drawImage(findOppPos(), 450, 300)
     posBtns.classList.remove('hidden')
     riposteCount++
-    console.log('riposte')
+    ctx.beginPath()
     ctx.fillStyle = 'black'
     ctx.font = '34px IM Fell DW Pica'
+    ctx.fillStyle = '#8f792c'
+    ctx.fillRect(280, 160, 340, 100)
+    ctx.fillStyle = 'black'
     ctx.fillText('Riposte!', 350, 200)
-    ctx.fillText(`Thee has't ${(2000-riposteCount*100)/1000}s to decideth!`, 320, 240)
+    ctx.fillText(`Thee has't ${(2000-riposteCount*100)/1000}s to decideth!`, 290, 240)
+    ctx.closePath()
     setTimeout(() => {
         if (opponentStance === playerStance) {
             posBtns.classList.add('hidden')
