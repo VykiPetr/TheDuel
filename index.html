@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div id='buttonCont'>
+    <div class='buttonCont'>
         <button type="button" class="btn btn-danger continue hidden">Continueth</button>
         <button type="button" class="btn btn-danger reset hidden">Restart</button>
         <div class="btn-group hidden" role="group" aria-label="Basic example">
@@ -34,22 +34,26 @@
             <input type="text" class="form-control" aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-sm" value="Knight"> 
         </div>
+        <button type="button" class="btn btn-danger instructions">Instructions</button>
         <button type="button" class="btn btn-primary">Starteth</button>
+        
     </div>
-    <div id='container'>
+    <div id='container' >
         <canvas width="899" height="500">
         </canvas>
     </div>
-    <div id='instructions'>
+    <div id='instructions' class="hidden">
         <h2>Welcometh!</h2>
-        <p>You must win 3 duels</p>
-        <p>in order to win the tournament!</p>
+        <p>Thee might not but winneth 3 duels</p>
+        <p>in 'rd'r to winneth the tournament!</p>
         <h3>Game rules</h3>
-        <p>You must choose from 3 positons</p>
-        <p>If your position matches the opponent's</p>
-        <p>You must choose a new one again!</p>
-        <p>But be careful as time to choose will decrease!</p>
-        <p>Best of luck Sir Knight!</p>
+        <p>Thee might not but chooseth from 3 positons</p>
+        <p>If 't be true thy position matches the opponent's</p>
+        <p>Thee might not but chooseth a new one again!</p>
+        <p>But beest careful as timeth to chooseth shall decrease!</p>
+        <p>Most wondrous of luck sir knight!</p>
+        <button type="button" class="btn btn-danger instrBack hidden">Backeth</button>
+        
     </div>
     <script src="index.js"></script>
     <script src="canvas.js"></script>

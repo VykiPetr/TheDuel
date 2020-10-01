@@ -314,17 +314,40 @@ const startGame = () => {
     startBtn.addEventListener('click', () => {
         startBtn.classList.add('hidden')
         nameBox.classList.add('hidden')
+        instructionBtn.classList.add('hidden')
         posBtns.classList.remove('hidden')
         duelBtn.classList.remove('hidden')
         currentScene = 1
         randomName()
-        playerName = `Ser ${enteredName}`
+        playerName = `S'r ${enteredName}`
         console.log('on start', enteredName)
         actionImg()
+    })
+    instructionBtn.addEventListener('click', () => {
+        buttonContainerMain.classList.add('hidden')
+        instrContainer.classList.remove('hidden')
+        instrBackBtn.classList.remove('hidden')
+        nameBox.classList.add('hidden')
+        startBtn.classList.add('hidden')
+        instructionBtn.classList.add('hidden')
+        mainCanvasCont.classList.add('hidden')
+    })
+    instrBackBtn.addEventListener('click', () => {
+        buttonContainerMain.classList.remove('hidden')
+        console.log('back in instructions')
+        instrContainer.classList.add('hidden')
+        instrBackBtn.classList.add('hidden')
+        nameBox.classList.remove('hidden')
+        startBtn.classList.remove('hidden')
+        instructionBtn.classList.remove('hidden')
+        mainCanvasCont.classList.remove('hidden')
     })
 }
 splashImg()
 startGame()
+
+
+
 
 
 

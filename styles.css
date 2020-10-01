@@ -4,21 +4,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: url('/TheDuel/images/splashScreen.png'); */
+    background-image: url('./images/bigparchment.png');
 }
 .btn.btn-info {
     position: fixed;
     left: 0;
     top: 0;
 }
-.btn.btn-primary {
+.btn.btn-primary, .btn.btn-danger, .btn.btn-warning {
     color: black;
     background-image: url('./images/parchementBg.jpg');
     border-color: black;
+    box-shadow: wheat;
 }
 
 
-#buttonCont {
+.buttonCont {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -52,5 +53,8 @@ body {
     display: none;
 }
 #instructions {
-    display: none;
+    background-image: url('./images/bigparchment.png');
+    font-size: 28px;
+    height: 800;
+    width: 600;
 }
