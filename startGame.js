@@ -89,7 +89,7 @@ const riposteScreen = () => {
     ctx.fillStyle = 'black'
     ctx.font = '34px IM Fell DW Pica'
     ctx.fillText('Riposte!', 350, 200)
-    ctx.fillText(`Thee has't ${(2000-riposteCount*100)}s to decideth!`, 320, 240)
+    ctx.fillText(`Thee has't ${(2000-riposteCount*100)/1000}s to decideth!`, 320, 240)
     setTimeout(() => {
         if (opponentStance === playerStance) {
             posBtns.classList.add('hidden')
