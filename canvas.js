@@ -33,7 +33,7 @@ playerWalk3.src = './images/PlayerWalk3.png'
 let playerX = 0
 let playerY = 0
 let playerStance = 0
-let playerHlth = 10
+let playerHlth = 6
 let playerName = ''
 let winAmnt = 0
 let animCount = 0
@@ -51,7 +51,7 @@ opponentBot.src = './images/OpponentBot.png'
 let opponentX = 0
 let opponentY = 0
 let opponentStance = 0
-let opponentHlth = 5
+let opponentHlth = 6
 let opponentName = ''
 // Sounds
 class sound {

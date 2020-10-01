@@ -18,23 +18,23 @@ const actionCounter = () => {
         drawStatusBox()
         fightRsltBox()
         ctx.fillText('The opponent deflects!', 310, 220)
-        ctx.fillText('Thee hath taken 1 damageth!', 310, 240)
+        ctx.fillText('Thee hath taken damageth!', 310, 240)
     } else if (opponentStance === 1 && (playerStance === 2)) {
-        playerHlth -= 2
+        playerHlth -= 1
         hitSound.play()
         playerHitSound.play()
         drawStatusBox()
         fightRsltBox()
         ctx.fillText('The opponent deflects!', 310, 220)
-        ctx.fillText('Thee hath taken 2 damageth!', 310, 240)
+        ctx.fillText('Thee hath taken damageth!', 310, 240)
     } else if (opponentStance === 2 && (playerStance === 0)) {
-        playerHlth -= 3
+        playerHlth -= 1
         hitSound.play()
         playerHitSound.play()
         drawStatusBox()
         fightRsltBox()
         ctx.fillText('You did not manage to deflect!', 310, 220)
-        ctx.fillText('Thee hath taken 3 damageth!', 310, 240)
+        ctx.fillText('Thee hath taken damageth!', 310, 240)
     } else if (playerStance === 0 && (opponentStance === 1)) {
         opponentHlth -= 1
         crowdCheer.play()
@@ -42,23 +42,23 @@ const actionCounter = () => {
         drawStatusBox()
         fightRsltBox()
         ctx.fillText(`Thee deflect the opponent!`, 310, 220)
-        ctx.fillText('Thee dealeth 1 damageth!', 310, 240)
+        ctx.fillText('Thee dealeth damageth!', 310, 240)
     } else if (playerStance === 1 && (opponentStance === 2)) {
-        opponentHlth -= 2
+        opponentHlth -= 1
         hitSound.play()
         crowdCheer.play()
         drawStatusBox()
         fightRsltBox()
         ctx.fillText(`Thee deflect the opponent!`, 310, 220)
-        ctx.fillText('Thee dealeth 2 damageth!', 310, 240)
+        ctx.fillText('Thee dealeth damageth!', 310, 240)
     } else if (playerStance === 2 && (opponentStance === 0)) {
-        opponentHlth -= 3
+        opponentHlth -= 1
         hitSound.play()
         crowdCheer.play()
         drawStatusBox()
         fightRsltBox()
         ctx.fillText(`Thee striketh past the d'fence!`, 310, 220)
-        ctx.fillText('Thee dealeth 3 damageth!', 310, 240)
+        ctx.fillText('Thee dealeth damageth!', 310, 240)
     }
     console.log('action called')
     // }, 3500)
@@ -100,7 +100,7 @@ const riposteScreen = () => {
             ctx.drawImage(findOppPos(), 450, 300)
             playerHlth -= 1
             ctx.fillText('Same position!', 310, 220)
-            ctx.fillText('Thee taketh 1 damageth', 310, 240)
+            ctx.fillText('Thee taketh damageth', 310, 240)
             setTimeout(() => {
                 drawStatusBox()
                 resetPos()
@@ -358,7 +358,7 @@ const contBtnFunction = () => {
     posBtns.classList.remove('hidden')
     contBut.classList.add('hidden')
     randomName()
-    opponentHlth = 5 + (winAmnt + 1)
+    opponentHlth = 3 + (winAmnt*2)
     actionImg()
     ctx.closePath()
 }
