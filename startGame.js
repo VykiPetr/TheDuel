@@ -181,6 +181,7 @@ const randomName = () => {
     opponentName = opponentNameArr[rng]
 }
 const loseAnim = () => {
+    loseSound.play()
     duelBtn.classList.add('hidden')
     posBtns.classList.add('hidden')
     let intervalId = 0
